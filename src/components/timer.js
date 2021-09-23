@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-
+import {
+    RetweetOutlined,
+    HourglassOutlined
+} from '@ant-design/icons';
 
 const Timer = (props) => {
     const { initialMinute, initialSeconds } = props;
@@ -11,7 +14,6 @@ const Timer = (props) => {
             if (seconds > 0) {
                 setSeconds(seconds - 1);
             }
-            console.log(seconds)
             if (seconds == 0) {
                 if (minutes == 0) {
                     clearInterval(myInterval)
@@ -30,13 +32,14 @@ const Timer = (props) => {
     function resetTimer() {
         setMinutes(initialMinute)
         setSeconds(initialSeconds)
+        props.reset()
         props.start()
     }
 
     return (
         <div>
-            <p> {minutes}:{seconds < 10 ? `0${seconds}` : seconds}</p>
-            <button onClick={() => resetTimer()}>Reset</button >
+            <HourglassOutlined /> {minutes}:{seconds < 10 ? `0${seconds}` : seconds} &nbsp;
+            <button onClick={() => resetTimer()}><RetweetOutlined /> Reset</button >
         </div >
     )
 }

@@ -33,3 +33,9 @@
 .card .title{
   background-color: violet;
 }
+
+button:disabled,
+button[disabled]{
+  opacity: 50%;
+}
+

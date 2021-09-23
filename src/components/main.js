@@ -21,26 +21,33 @@ function Main(props) {
 
     const [words, setWords] = useState(initalCard)
     const [stopped, setStop] = useState(false)
+    const [reset, setReset] = useState(false)
 
     const mode = isStart ? "start" : "game"
 
-    function setCard(words) {
-        const gameWords = {
-            word: "FINGERPRINT",
-            taboo1: "HAND",
-            taboo2: "MARK",
-            taboo3: "EVIDENCE",
-            taboo4: "CRIME",
-            taboo5: "DUST"
-        }
+    // function setWords(words) {
+    //     const gameWords = {
+    //         word: "FINGERPRINT",
+    //         taboo1: "HAND",
+    //         taboo2: "MARK",
+    //         taboo3: "EVIDENCE",
+    //         taboo4: "CRIME",
+    //         taboo5: "DUST"
+    //     }
 
-        if (!words) {
-            words = gameWords
-        }
-        setWords(words)
+    //     if (!words) {
+    //         words = gameWords
+    //     }
+    //     setWords(words)
+    // }
+
+    function resetFunc() {
+        //reset whole round 
+        //1. Passes
+        setReset(true)
+        // setReset(false)
+        setTimeout(() => { setReset(false) }, 1);
     }
-
-
 
     return (
         <div>
@@ -52,12 +59,17 @@ function Main(props) {
                         initialSeconds="4"
                         stop={() => { setStop(true) }}
                         start={() => { setStop(false) }}
-                    /> : null}
+                        reset={() => { resetFunc() }}
+                    /> : <br />}
+
+                <br />
                 <button
                     disabled={!isStart}
                     onClick={() => {
                         setIsStart(false)
-                        setCard()
+                        setWords()
+                        resetFunc()
+                        setStop(false)
                     }}
                 >
                     Start Button
@@ -67,14 +79,13 @@ function Main(props) {
                     disabled={isStart}
                     onClick={() => {
                         setIsStart(true)
-                        setCard(initalCard)
+                        setWords(initalCard)
                     }} >
                     End Button
                 </button>
 
-                <Card words={words} />
+                <Card words={words} stopped={stopped} reset={reset} isStart={isStart} />
 
-                <button disabled={stopped}>Next</button>
             </header>
 
         </div>
