@@ -5,7 +5,7 @@ import { Row, Col } from 'antd';
 import "antd/dist/antd.css";
 import '../App.css';
 
-const Card = (props) => {
+const ScoreTable = (props) => {
 
     const [index, setIndex] = useState(0);
     const [passes, setPasses] = useState(3);
@@ -97,30 +97,25 @@ const Card = (props) => {
 
     return (
         <>
-            <Row justify="center">
+            <Row>
                 {/* <Col xs={24} sm={24} md={8} lg={8}></Col> */}
-                <Col span={8} className="button-left">
-
-                    {props.isStart ?
-                        null :
-                        <button
-                            className="button-taboo"
-                            disabled={disabledButtons}
-                            onClick={() => {
-                                setScoreState("taboo")
-                                nextWord(index, cards)
-                            }}>
-                            Taboo
-                        </button>
-                    }
-                </Col>
                 <Col span={8}>
-                    {index}
-                    <div className="card-title">
-                        {word}
-                    </div>
+                    <button
+                        disabled={disabledButtons}
+                        onClick={() => {
+                            setScoreState("taboo")
+                            nextWord(index, cards)
+                        }}>
+                        Taboo
+                    </button>
+                </Col>
+                {/* <Col span={8}> */}
+                <Col span={8}>
                     <div className="card">
-
+                        {index}
+                        <div className="title">
+                            {word}
+                        </div>
                         <div backgroundColor="white">
                             {taboo1}<br />
                             {taboo2}<br />
@@ -128,36 +123,30 @@ const Card = (props) => {
                             {taboo4}<br />
                             {taboo5}<br />
                         </div>
+
+
+                        {props.isStart ?
+                            null :
+                            <button
+                                disabled={disablePass}
+                                onClick={() => {
+                                    nextWord(index, cards)
+                                    setPassState(passes)
+                                }}
+                            > Pass ({passes})</button>
+                        }
                     </div>
 
-                    {props.isStart ?
-                        null :
-                        <button
-                            className="button-pass"
-                            disabled={disablePass}
-                            onClick={() => {
-                                nextWord(index, cards)
-                                setPassState(passes)
-                            }}
-                        > Pass ({passes})</button>
-                    }
-
                 </Col>
-                <Col span={8} className="button-right">
-                    {props.isStart ?
-                        null :
-                        <button
-                            className="button-correct"
-                            disabled={disabledButtons}
-                            onClick={() => {
-                                setScoreState("correct")
-                                nextWord(index, cards)
-                            }}>
-                            Correct
-                        </button>
-                    }
-                    <br />
-                    {/* TODO: make score not visible on start */}
+                <Col span={8}>
+                    <button
+                        disabled={disabledButtons}
+                        onClick={() => {
+                            setScoreState("correct")
+                            nextWord(index, cards)
+                        }}>
+                        Correct
+                    </button> <br />
                     Score : {score}
                 </Col>
             </Row>
@@ -165,4 +154,4 @@ const Card = (props) => {
     )
 }
 
-export default Card;
+export default ScoreTable;

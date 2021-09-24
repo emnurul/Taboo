@@ -25,22 +25,6 @@ function Main(props) {
 
     const mode = isStart ? "start" : "game"
 
-    // function setWords(words) {
-    //     const gameWords = {
-    //         word: "FINGERPRINT",
-    //         taboo1: "HAND",
-    //         taboo2: "MARK",
-    //         taboo3: "EVIDENCE",
-    //         taboo4: "CRIME",
-    //         taboo5: "DUST"
-    //     }
-
-    //     if (!words) {
-    //         words = gameWords
-    //     }
-    //     setWords(words)
-    // }
-
     function resetFunc() {
         //reset whole round 
         //1. Passes

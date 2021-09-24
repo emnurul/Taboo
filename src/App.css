@@ -26,16 +26,71 @@
   }
 }
 
-.card{
-  background-color: aliceblue;
+.container {
+  height: 100vh;
+  background-color: darkcyan;
 }
 
-.card .title{
-  background-color: violet;
+.card{
+  border-radius: 0 0 10px 10px;
+  margin: auto;
+  line-height:30px;
+  background-color: white;
+  max-width: 150px;
+  padding: 5px 0;
+}
+
+.card-title{
+  max-width: 150px;
+  margin: auto;
+  border-radius: 10px 10px 0 0;
+  line-height:40px;
+  background-color: #8A2BE2;
+  color: white;
+  font-size: medium;
 }
 
 button:disabled,
 button[disabled]{
   opacity: 50%;
+  cursor: auto;
+}
+
+.button-left{
+  margin: auto;
+  text-align: right;
+}
+
+.button-right{
+  color: white;
+  margin: auto;
+  text-align: left;
+}
+
+button {
+  border: none;
+  padding: 5px 15px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.button-taboo {
+  background-color: #8A2BE2;
+  color: white;
+  margin: 10px 0;
+}
+
+.button-correct {
+  background-color: #4CAF50;
+  color: white;
+  margin: 10px 0;
+}
+
+.button-pass {
+  background-color: red;
+  color: white;
+  margin: 10px 0;
 }
 
