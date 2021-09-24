@@ -115,7 +115,6 @@ const Card = (props) => {
                     }
                 </Col>
                 <Col span={8}>
-                    {index}
                     <div className="card-title">
                         {word}
                     </div>

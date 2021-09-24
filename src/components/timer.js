@@ -4,6 +4,7 @@ import {
     RetweetOutlined,
     HourglassOutlined
 } from '@ant-design/icons';
+import '../App.css';
 
 const Timer = (props) => {
     const { initialMinute, initialSeconds } = props;
@@ -38,8 +39,27 @@ const Timer = (props) => {
 
     return (
         <div>
-            <HourglassOutlined /> {minutes}:{seconds < 10 ? `0${seconds}` : seconds} &nbsp;
-            <button onClick={() => resetTimer()}><RetweetOutlined /> Reset</button >
+
+            <table className="center">
+                <tr>
+                    <td>
+                        <div className="timer">
+                            <HourglassOutlined /> {minutes}:{seconds < 10 ? `0${seconds}` : seconds} &nbsp;
+                        </div>
+                    </td>
+
+                    <td>
+                        <button
+                            className="button-reset"
+                            onClick={() => resetTimer()}>
+                            <RetweetOutlined />
+                        </button >
+                    </td>
+                </tr>
+
+            </table>
+
+
         </div >
     )
 }

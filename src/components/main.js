@@ -37,16 +37,7 @@ function Main(props) {
         <div>
             <header className="container">
                 <p>{mode}</p>
-                {mode === "game" ?
-                    <Timer
-                        initialMinute="0"
-                        initialSeconds="4"
-                        stop={() => { setStop(true) }}
-                        start={() => { setStop(false) }}
-                        reset={() => { resetFunc() }}
-                    /> : <br />}
 
-                <br />
                 <button
                     disabled={!isStart}
                     onClick={() => {
@@ -67,6 +58,17 @@ function Main(props) {
                     }} >
                     End Button
                 </button>
+
+                {mode === "game" ?
+                    <Timer
+                        initialMinute="1"
+                        initialSeconds="0"
+                        stop={() => { setStop(true) }}
+                        start={() => { setStop(false) }}
+                        reset={() => { resetFunc() }}
+                    /> : <br />}
+
+                <br />
 
                 <Card words={words} stopped={stopped} reset={reset} isStart={isStart} />
 

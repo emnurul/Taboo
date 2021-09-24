@@ -57,6 +57,7 @@ button[disabled]{
 }
 
 .button-left{
+  /* background-color: tomato; */
   margin: auto;
   text-align: right;
 }
@@ -94,3 +95,15 @@ button {
   margin: 10px 0;
 }
 
+.button-reset {
+  background-color: orange;
+}
+
+.center {
+  margin: auto
+}
+.timer{
+  background-color: white;
+  padding: 5px 15px;
+  text-align: center;
+}
