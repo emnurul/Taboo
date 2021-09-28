@@ -61,8 +61,8 @@ function Main(props) {
 
                 {mode === "game" ?
                     <Timer
-                        initialMinute="1"
-                        initialSeconds="0"
+                        initialMinute="0"
+                        initialSeconds="3"
                         stop={() => { setStop(true) }}
                         start={() => { setStop(false) }}
                         reset={() => { resetFunc() }}

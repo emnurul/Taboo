@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import {
-    RetweetOutlined,
+    ReloadOutlined,
     HourglassOutlined
 } from '@ant-design/icons';
 import '../App.css';
@@ -52,7 +52,7 @@ const Timer = (props) => {
                         <button
                             className="button-reset"
                             onClick={() => resetTimer()}>
-                            <RetweetOutlined />
+                            <ReloadOutlined />
                         </button >
                     </td>
                 </tr>

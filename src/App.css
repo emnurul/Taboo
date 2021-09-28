@@ -40,6 +40,10 @@
   padding: 5px 0;
 }
 
+.card-disabled{
+  opacity: 50%;
+}
+
 .card-title{
   max-width: 150px;
   margin: auto;
@@ -102,8 +106,32 @@ button {
 .center {
   margin: auto
 }
-.timer{
+.timer {
   background-color: white;
   padding: 5px 15px;
   text-align: center;
+}
+
+.score-header  {
+  background-color: #3498DB;
+  color: white;
+}
+
+.score-table {
+  margin: auto;
+  max-width: 30vw;
+  /* text-align: left; */
+  background-color: lightblue;
+}
+
+.score-table .taboo {
+  color:#8A2BE2
+}
+
+.score-table .pass {
+  color: red
+}
+
+li {
+  list-style-type: none;
 }
