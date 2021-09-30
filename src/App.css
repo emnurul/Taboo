@@ -27,31 +27,34 @@
 }
 
 .container {
-  height: 100vh;
+  padding: 30px 0;
+  min-height: calc(100vh - 60px);
+  height: 100%;
   background-color: darkcyan;
 }
 
 .card{
-  border-radius: 0 0 10px 10px;
+  
+  max-width: 250px;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
   margin: auto;
-  line-height:30px;
+  line-height:50px;
   background-color: white;
-  max-width: 150px;
+  /* width: 250px; */
   padding: 5px 0;
+  font-size: x-large;
 }
 
-.card-disabled{
-  opacity: 50%;
-}
-
-.card-title{
-  max-width: 150px;
+.card-title{ 
+  max-width: 250px;
+  width: 100%;
   margin: auto;
-  border-radius: 10px 10px 0 0;
-  line-height:40px;
+  border-radius: 20px 20px 0 0;
+  line-height:70px;
   background-color: #8A2BE2;
   color: white;
-  font-size: medium;
+  font-size: xx-large;
 }
 
 button:disabled,
@@ -61,45 +64,65 @@ button[disabled]{
 }
 
 .button-left{
-  /* background-color: tomato; */
+  /* background-color: lightcoral; */
   margin: auto;
   text-align: right;
 }
 
 .button-right{
-  color: white;
+  /* background-color: lightcoral; */
   margin: auto;
   text-align: left;
+}
+
+.button-start{
+  font-size: x-large;
+  background-color: #8A2BE2;
+  color: white;
+  margin: 10px 0;
+}
+
+.button-home{
+  /* float: left;
+  margin : 10px; */
+  font-size: x-large;
+  /* display: inline-block;
+    vertical-align: top; */
+    text-align: right;
 }
 
 button {
   border: none;
   padding: 5px 15px;
   text-align: center;
-  font-size: 16px;
+  font-size: 160px;
   cursor: pointer;
 }
 
 
 .button-taboo {
+  font-size: x-large;
   background-color: #8A2BE2;
   color: white;
   margin: 10px 0;
 }
 
 .button-correct {
+  font-size: x-large;
   background-color: #4CAF50;
   color: white;
   margin: 10px 0;
 }
 
 .button-pass {
+  font-size: x-large;
   background-color: red;
   color: white;
   margin: 10px 0;
 }
 
 .button-reset {
+  font-size: x-large;
   background-color: orange;
 }
 
@@ -107,6 +130,7 @@ button {
   margin: auto
 }
 .timer {
+  font-size: x-large;
   background-color: white;
   padding: 5px 15px;
   text-align: center;
@@ -118,10 +142,12 @@ button {
 }
 
 .score-table {
+  font-size: x-large;
+  line-height: 50px;
   margin: auto;
-  max-width: 30vw;
-  /* text-align: left; */
+  max-width: 400px;
   background-color: lightblue;
+
 }
 
 .score-table .taboo {
@@ -134,4 +160,9 @@ button {
 
 li {
   list-style-type: none;
+}
+
+.total-score{
+  background-color: #87CEEB;
+  width:100%
 }

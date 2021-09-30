@@ -8,6 +8,7 @@ import '../App.css';
 const ScoreTable = (props) => {
 
     const { words, score } = props
+    const points = score === 1 ? "pt": "pts"
     return (
         <div className="score-table">
             <Row justify="center" className="score-header">
@@ -16,11 +17,11 @@ const ScoreTable = (props) => {
                     TEAM A
                 </Col>
             </Row>
-            <Row justify="center" >
-                {/* <Col xs={24} sm={24} md={8} lg={8}></Col> */}
-
+            <Row justify="center">
+                <div className="total-score">Round : 1 ({score} {points})</div>
+            </Row>
+            <Row className="score-body" justify="center" >
                 <Col span={8} className="score-data">
-                    <li>Round 1 ({score} PTS)</li>
                     {words.map((item) => {
                         return (
                             <div className={item.type}>
@@ -30,6 +31,9 @@ const ScoreTable = (props) => {
 
                     })}
                 </Col>
+            </Row>
+            <Row justify="center">
+                <div className="total-score">Total : {score}</div>
             </Row>
         </div>
     )

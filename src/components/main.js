@@ -11,7 +11,7 @@ function Main(props) {
     const [isStart, setIsStart] = useState(true)
 
     const initalCard = {
-        word: "START",
+        word: "HOME",
         taboo1: "1.Choose Team Name",
         taboo2: "2.Select Time",
         taboo3: "3.Select Taboo Score",
@@ -35,30 +35,17 @@ function Main(props) {
 
     return (
         <div>
-            <header className="container">
-                <p>{mode}</p>
-
-                <button
-                    disabled={!isStart}
-                    onClick={() => {
-                        setIsStart(false)
-                        setWords()
-                        resetFunc()
-                        setStop(false)
-                    }}
-                >
-                    Start Button
-                </button>
-
-                <button
+            <button
+                    className="button-home"
                     disabled={isStart}
                     onClick={() => {
                         setIsStart(true)
                         setWords(initalCard)
                     }} >
-                    End Button
+                    H
                 </button>
 
+            <header className="container">
                 {mode === "game" ?
                     <Timer
                         initialMinute="0"
@@ -66,10 +53,26 @@ function Main(props) {
                         stop={() => { setStop(true) }}
                         start={() => { setStop(false) }}
                         reset={() => { resetFunc() }}
-                    /> : <br />}
+                    /> :
+
+                    <div>
+                        <button
+                            className="button-start"
+                            disabled={!isStart}
+                            onClick={() => {
+                                setIsStart(false)
+                                setWords()
+                                resetFunc()
+                                setStop(false)
+                            }}
+                        >
+                            Start
+                        </button>
+
+                        <br />
+                    </div>}
 
                 <br />
-
                 <Card words={words} stopped={stopped} reset={reset} isStart={isStart} />
 
             </header>

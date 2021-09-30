@@ -8,10 +8,14 @@ import '../App.css';
 
 const Card = (props) => {
 
+    const { isStart, stopped, reset } = props
+
     const [index, setIndex] = useState(0);
     const [passes, setPasses] = useState(3);
     const [score, setScore] = useState(0);
     const [words, setWords] = useState([])
+
+    const isStartWord = props.words?.word === "HOME"
 
     //TODO: grab words from DB
     const cards = [
@@ -64,7 +68,7 @@ const Card = (props) => {
         setPasses(passesNo)
     }
 
-    if (props.reset) {
+    if (reset) {
         setTimeout(() => {
             setWords([])
             nextWord()
@@ -75,7 +79,7 @@ const Card = (props) => {
 
     let disabledButtons = false
     let disablePass = false
-    if (props.stopped === true) {
+    if (stopped === true) {
         disabledButtons = true
         disablePass = true
     } else if (passes === 0) {
@@ -105,16 +109,16 @@ const Card = (props) => {
 
     return (
         <>
-            {props.stopped ?
+            {!isStartWord && stopped ?
                 <div>
                     <ScoreTable words={words} score={score} />
                 </div>
                 :
                 <Row justify="center">
                     {/* <Col xs={24} sm={24} md={8} lg={8}></Col> */}
-                    <Col span={8} className="button-left">
+                    <Col span={7} className="button-left">
 
-                        {props.isStart ?
+                        {isStart ?
                             null :
                             <button
                                 className="button-taboo"
@@ -127,10 +131,8 @@ const Card = (props) => {
                             </button>
                         }
                     </Col>
-                    <Col span={8}>
-
-                        <div className={props.stopped ? "card-disabled" : "null"}>
-
+                    <Col xs={10} md={8}>
+                        <div>
                             <div className="card-title">
                                 {word}
                             </div>
@@ -145,7 +147,7 @@ const Card = (props) => {
                                 </div>
                             </div>
 
-                            {props.isStart ?
+                            {isStart ?
                                 null :
                                 <button
                                     className="button-pass"
@@ -160,8 +162,8 @@ const Card = (props) => {
                         </div>
 
                     </Col>
-                    <Col span={8} className="button-right">
-                        {props.isStart ?
+                    <Col span={7} className="button-right">
+                        {isStart ?
                             null :
                             <button
                                 className="button-correct"
