@@ -34,7 +34,6 @@
 }
 
 .card{
-  
   max-width: 250px;
   width: 100%;
   border-radius: 0 0 20px 20px;
@@ -64,31 +63,24 @@ button[disabled]{
 }
 
 .button-left{
-  /* background-color: lightcoral; */
   margin: auto;
   text-align: right;
 }
 
 .button-right{
-  /* background-color: lightcoral; */
+  font-size: x-large;
+  color:white;
   margin: auto;
   text-align: left;
 }
 
-.button-start{
-  font-size: x-large;
-  background-color: #8A2BE2;
-  color: white;
-  margin: 10px 0;
-}
-
 .button-home{
-  /* float: left;
-  margin : 10px; */
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
   font-size: x-large;
-  /* display: inline-block;
-    vertical-align: top; */
-    text-align: right;
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 
 button {
@@ -121,6 +113,13 @@ button {
   margin: 10px 0;
 }
 
+.button-next {
+  border-radius: 15px;
+  font-size: x-large;
+  background-color:#8A2BE2;
+  color: white;
+}
+
 .button-reset {
   font-size: x-large;
   background-color: orange;
@@ -130,6 +129,7 @@ button {
   margin: auto
 }
 .timer {
+  width: 150px;
   font-size: x-large;
   background-color: white;
   padding: 5px 15px;
@@ -146,8 +146,14 @@ button {
   line-height: 50px;
   margin: auto;
   max-width: 400px;
-  background-color: lightblue;
+}
 
+.score-body{
+  font-size: x-large;
+  line-height: 50px;
+  margin: auto;
+  max-width: 400px;
+  background-color: lightblue;
 }
 
 .score-table .taboo {

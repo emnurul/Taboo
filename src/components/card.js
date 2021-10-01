@@ -8,7 +8,8 @@ import '../App.css';
 
 const Card = (props) => {
 
-    const { isStart, stopped, reset } = props
+    //const round = { team: "A", round: 1 }
+    const { isStart, stopped, reset, round } = props
 
     const [index, setIndex] = useState(0);
     const [passes, setPasses] = useState(3);
@@ -114,73 +115,79 @@ const Card = (props) => {
                     <ScoreTable words={words} score={score} />
                 </div>
                 :
-                <Row justify="center">
-                    {/* <Col xs={24} sm={24} md={8} lg={8}></Col> */}
-                    <Col span={7} className="button-left">
-
-                        {isStart ?
-                            null :
-                            <button
-                                className="button-taboo"
-                                disabled={disabledButtons}
-                                onClick={() => {
-                                    setScoreState("taboo", word)
-                                    nextWord(index, cards)
-                                }}>
-                                Taboo
-                            </button>
-                        }
-                    </Col>
-                    <Col xs={10} md={8}>
-                        <div>
-                            <div className="card-title">
-                                {word}
-                            </div>
-                            <div className="card">
-
-                                <div backgroundColor="white">
-                                    {taboo1}<br />
-                                    {taboo2}<br />
-                                    {taboo3}<br />
-                                    {taboo4}<br />
-                                    {taboo5}<br />
-                                </div>
-                            </div>
+                <>
+                    <Row justify="center">
+                        {/* <Col xs={24} sm={24} md={8} lg={8}></Col> */}
+                        <Col span={7} className="button-left">
 
                             {isStart ?
                                 null :
-                                <button
-                                    className="button-pass"
-                                    disabled={disablePass}
-                                    onClick={() => {
-                                        setScoreState("pass", word)
-                                        nextWord(index, cards)
-                                        setPassState(passes)
-                                    }}
-                                > Pass ({passes})</button>
+                                <div>
+                                    <button
+                                        className="button-taboo"
+                                        disabled={disabledButtons}
+                                        onClick={() => {
+                                            setScoreState("taboo", word)
+                                            nextWord(index, cards)
+                                        }}>
+                                        Taboo
+                                    </button>
+                                </div>
                             }
-                        </div>
+                        </Col>
+                        <Col xs={10} md={8}>
+                            <div>
+                                <div className="card-title">
+                                    {word}
+                                </div>
+                                <div className="card">
 
-                    </Col>
-                    <Col span={7} className="button-right">
-                        {isStart ?
-                            null :
-                            <button
-                                className="button-correct"
-                                disabled={disabledButtons}
-                                onClick={() => {
-                                    setScoreState("correct", word)
-                                    nextWord(index, cards)
-                                }}>
-                                Correct
-                            </button>
-                        }
-                        <br />
-                        {/* TODO: make score not visible on start */}
-                        Score : {score}
-                    </Col>
-                </Row>
+                                    <div backgroundColor="white">
+                                        {taboo1}<br />
+                                        {taboo2}<br />
+                                        {taboo3}<br />
+                                        {taboo4}<br />
+                                        {taboo5}<br />
+                                    </div>
+                                </div>
 
+                                {isStart ?
+                                    null :
+                                    <button
+                                        className="button-pass"
+                                        disabled={disablePass}
+                                        onClick={() => {
+                                            setScoreState("pass", word)
+                                            nextWord(index, cards)
+                                            setPassState(passes)
+                                        }}
+                                    > Pass ({passes})</button>
+                                }
+                            </div>
+
+                        </Col>
+                        <Col span={7} className="button-right">
+                            {isStart ?
+                                null :
+                                <div>
+                                    <button
+                                        className="button-correct"
+                                        disabled={disabledButtons}
+                                        onClick={() => {
+                                            setScoreState("correct", word)
+                                            nextWord(index, cards)
+                                        }}>
+                                        Correct
+                                    </button>
+                                    <br />
+                                    Score : {score}
+                                </div>
+
+                            }
+                            <br />
+                        </Col>
+                    </Row>
+                </>
             }
 
         </>

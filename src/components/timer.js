@@ -42,7 +42,7 @@ const Timer = (props) => {
 
             <table className="center">
                 <tr>
-                    <td>
+                    <td style={{padding: "0 5px"}}>
                         <div className="timer">
                             <HourglassOutlined /> {minutes}:{seconds < 10 ? `0${seconds}` : seconds} &nbsp;
                         </div>
