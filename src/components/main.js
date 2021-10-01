@@ -85,6 +85,11 @@ function Main(props) {
 
     // rounds({ team: "A", round: 1 })
 
+    function scores(score) {
+        console.log(Date.now())
+        console.log(score)
+    }
+
 
     return (
         <div>
@@ -92,9 +97,8 @@ function Main(props) {
                 {mode === "game" ?
                     <>
                         <div className="score-table" style={{ maxWidth: "250px", borderRadius: "50px" }}>
-                            <Row justify="center" className="score-header" style={{ borderRadius: "50px" }}
-                            >
-                                TEAM A
+                            <Row justify="center" className="score-header" style={{ borderRadius: "50px" }}>
+                                TEAM {round.team}
                             </Row>
                         </div>
                         <br />
@@ -144,7 +148,7 @@ function Main(props) {
                 <br />
                 <Card
                     round={round}
-                    setScore="some function"
+                    setScores={(a) => { scores(a) }}
                     words={words}
                     stopped={stopped}
                     reset={reset}

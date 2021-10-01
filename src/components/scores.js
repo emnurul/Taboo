@@ -34,10 +34,6 @@ const ScoreTable = (props) => {
             <Row justify="center">
                 <div className="total-score">Total : {score}</div>
             </Row>
-            <br />
-            <button className="button-next">
-                Next Round
-            </button>
         </div>
     )
 }

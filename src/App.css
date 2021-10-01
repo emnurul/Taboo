@@ -114,7 +114,9 @@ button {
 }
 
 .button-next {
-  border-radius: 15px;
+  line-height: 40px;
+  width: 250px;
+  border-radius: 20px;
   font-size: x-large;
   background-color:#8A2BE2;
   color: white;
@@ -149,6 +151,7 @@ button {
 }
 
 .score-body{
+  min-height: 100px;
   font-size: x-large;
   line-height: 50px;
   margin: auto;
