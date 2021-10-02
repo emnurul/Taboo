@@ -108,22 +108,21 @@ const Card = (props) => {
         setScore(currentScore)
     }
 
-    function toParent(score) {
-        props.setScores(score)
-    }
-
-
     return (
         <>
             {!isStartWord && stopped ?
                 <div>
-                    <ScoreTable words={words} score={score} />
+                    <ScoreTable
+                        words={words}
+                        score={score}
+                        round={round.round}
+                    />
                     <br />
                     <button
                         className="button-next"
                         onClick={() => props.setScores({
-                            teamA: words,
                             team: round,
+                            words: words,
                             score: score
                         })}>
                         Next Round
@@ -156,8 +155,7 @@ const Card = (props) => {
                                     {word}
                                 </div>
                                 <div className="card">
-
-                                    <div backgroundColor="white">
+                                    <div>
                                         {taboo1}<br />
                                         {taboo2}<br />
                                         {taboo3}<br />

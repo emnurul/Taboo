@@ -14,6 +14,7 @@ import {
 function Main(props) {
 
     const [isStart, setIsStart] = useState(true)
+    const [refresh, doRefresh] = useState(0);
 
     const intialTeamState = {
         1: {},
@@ -23,7 +24,7 @@ function Main(props) {
 
     const [teamAState, setTeamAState] = useState(intialTeamState)
     const [teamBState, setTeamBState] = useState(intialTeamState)
-    const [round, setRound] = useState({ team: "B", round: 1 })
+    const [round, setRound] = useState({ team: "A", round: 1 })
 
     // const initalCard = {
     //     word: "HOME",
@@ -51,9 +52,7 @@ function Main(props) {
 
     function resetFunc() {
         //reset whole round 
-        //1. Passes
         setReset(true)
-        // setReset(false)
         setTimeout(() => { setReset(false) }, 1);
     }
 
@@ -67,6 +66,8 @@ function Main(props) {
 
     ]
 
+
+    // rounds({ team: "A", round: 1 })
     function rounds(currentItem) {
         const index = roundArray.findIndex(e => (
             e.team == currentItem.team &&
@@ -80,14 +81,30 @@ function Main(props) {
         } else {
             setRound(nextRound)
             console.log("next round starting...", nextRound)
+
+            setStop(false)
+            resetFunc()
+            //init next round
         }
     }
 
-    // rounds({ team: "A", round: 1 })
+    function scores(scoreData) {
+       doRefresh(refresh + 1)
+        const { team, words, score } = scoreData
 
-    function scores(score) {
-        console.log(Date.now())
-        console.log(score)
+        const newScore = {
+            [round.round]: {
+                words,
+                score
+            }
+        }
+
+        //setting scores for total tally
+        team.team === "A" ?
+            setTeamAState({ ...teamAState, ...newScore }) :
+            setTeamBState({ ...teamBState, ...newScore })
+
+        rounds(round)
     }
 
 
@@ -97,8 +114,10 @@ function Main(props) {
                 {mode === "game" ?
                     <>
                         <div className="score-table" style={{ maxWidth: "250px", borderRadius: "50px" }}>
-                            <Row justify="center" className="score-header" style={{ borderRadius: "50px" }}>
-                                TEAM {round.team}
+                            <Row justify="center" >
+                                <Col className="score-header" style={{ width: "150px", borderRadius: "50px" }}>TEAM {round.team}</Col>&nbsp;
+
+                                <Col className="score-header" style={{ backgroundColor: "#8A2BE2", width: "50px", borderRadius: "50px" }}>{round.round}</Col>&nbsp;
                             </Row>
                         </div>
                         <br />
@@ -132,8 +151,9 @@ function Main(props) {
                 {mode === "game" ?
                     <>
                         <Timer
+                            refresh={refresh}
                             initialMinute="0"
-                            initialSeconds="3"
+                            initialSeconds="5"
                             stop={() => { setStop(true) }}
                             start={() => { setStop(false) }}
                             reset={() => { resetFunc() }}
@@ -154,6 +174,12 @@ function Main(props) {
                     reset={reset}
                     isStart={isStart}
                 />
+
+                Team A:
+                {JSON.stringify(teamAState)}
+                <br />
+                Team B:
+                {JSON.stringify(teamBState)}
 
             </header>
 

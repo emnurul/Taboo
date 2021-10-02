@@ -7,7 +7,7 @@ import '../App.css';
 
 const ScoreTable = (props) => {
 
-    const { words, score } = props
+    const { words, score, round } = props
     const points = score === 1 ? "pt" : "pts"
     return (
         <div className="score-table">
@@ -17,7 +17,7 @@ const ScoreTable = (props) => {
                 </Col>
             </Row>
             <Row justify="center">
-                <div className="total-score">Round : 1 ({score} {points})</div>
+                <div className="total-score">Round : {round} ({score} {points})</div>
             </Row>
             <Row className="score-body" justify="center" >
                 <Col span={8} className="score-data">

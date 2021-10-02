@@ -6,7 +6,15 @@ import {
 } from '@ant-design/icons';
 import '../App.css';
 
+
+
 const Timer = (props) => {
+
+    useEffect(() => {
+        resetTimer();
+      }, [props.refresh]);
+
+
     const { initialMinute, initialSeconds } = props;
     const [minutes, setMinutes] = useState(initialMinute);
     const [seconds, setSeconds] = useState(initialSeconds);

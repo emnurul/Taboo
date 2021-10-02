@@ -139,6 +139,7 @@ button {
 }
 
 .score-header  {
+  padding: 0 10px;
   background-color: #3498DB;
   color: white;
 }
