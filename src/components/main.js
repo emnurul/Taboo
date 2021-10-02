@@ -107,7 +107,7 @@ function Main(props) {
             setTeamBState({ score: count, state: [...teamState.state, newScore] })
 
         rounds(round)
-
+        //TODO: tie edge case
         teamAState.score > teamBState.score ? setWinner("A") : setWinner("B")
     }
 
@@ -177,7 +177,7 @@ function Main(props) {
                     <>
                         <div className="score-table" style={{ maxWidth: "250px", borderRadius: "50px" }}>
                             <Row justify="center" >
-                                <Col className="score-header" style={{ width: "150px", borderRadius: "50px" }}>TEAM {round.team}</Col>&nbsp;
+                                <Col className="score-header" style={{ width: "150px", borderRadius: "50px" }}>TEAM &nbsp;{round.team}</Col>&nbsp;
                                 <Col className="score-header" style={{ backgroundColor: "#8A2BE2", width: "50px", borderRadius: "50px" }}>{round.round}</Col>&nbsp;
                             </Row>
                         </div>
@@ -213,8 +213,8 @@ function Main(props) {
                     <>
                         <Timer
                             refresh={refresh}
-                            initialMinute="0"
-                            initialSeconds="2"
+                            initialMinute="1"
+                            initialSeconds="0"
                             stop={() => { setStop(true) }}
                             start={() => { setStop(false) }}
                             reset={() => { resetFunc() }}
