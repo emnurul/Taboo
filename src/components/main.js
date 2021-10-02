@@ -21,10 +21,11 @@ function Main(props) {
         2: {},
         3: {}
     }
+    const initialRound = { team: "A", round: 1 }
 
     const [teamAState, setTeamAState] = useState(intialTeamState)
     const [teamBState, setTeamBState] = useState(intialTeamState)
-    const [round, setRound] = useState({ team: "A", round: 1 })
+    const [round, setRound] = useState(initialRound)
 
     // const initalCard = {
     //     word: "HOME",
@@ -47,13 +48,20 @@ function Main(props) {
     const [words, setWords] = useState(initalCard)
     const [stopped, setStop] = useState(false)
     const [reset, setReset] = useState(false)
+    const [isFinal, setFinal] = useState(false)
 
     const mode = isStart ? "start" : "game"
 
     function resetFunc() {
-        //reset whole round 
         setReset(true)
         setTimeout(() => { setReset(false) }, 1);
+    }
+
+    function resetGame() {
+        setTeamAState(intialTeamState)
+        setTeamBState(intialTeamState)
+        setFinal(false)
+        setRound(initialRound)
     }
 
     const roundArray = [
@@ -63,11 +71,8 @@ function Main(props) {
         { team: "B", round: 2 },
         { team: "A", round: 3 },
         { team: "B", round: 3 }
-
     ]
 
-
-    // rounds({ team: "A", round: 1 })
     function rounds(currentItem) {
         const index = roundArray.findIndex(e => (
             e.team == currentItem.team &&
@@ -77,19 +82,16 @@ function Main(props) {
         const nextRound = roundArray[index + 1]
         if (!nextRound) {
             setRound({})
-            console.log("game is over....")
+            setFinal(true)
         } else {
             setRound(nextRound)
-            console.log("next round starting...", nextRound)
-
             setStop(false)
             resetFunc()
-            //init next round
         }
     }
 
     function scores(scoreData) {
-       doRefresh(refresh + 1)
+        doRefresh(refresh + 1)
         const { team, words, score } = scoreData
 
         const newScore = {
@@ -111,19 +113,32 @@ function Main(props) {
     return (
         <div>
             <header className="container">
-                {mode === "game" ?
+
+                {
+                    isFinal ?
+                        <>
+                            Final...s<br />
+
+                            Team A:
+                            {JSON.stringify(teamAState)}
+                            <br />
+                            Team B:
+                            {JSON.stringify(teamBState)}
+                        </> :
+                        null
+                }
+
+                {!isFinal && mode === "game" ?
                     <>
                         <div className="score-table" style={{ maxWidth: "250px", borderRadius: "50px" }}>
                             <Row justify="center" >
                                 <Col className="score-header" style={{ width: "150px", borderRadius: "50px" }}>TEAM {round.team}</Col>&nbsp;
-
                                 <Col className="score-header" style={{ backgroundColor: "#8A2BE2", width: "50px", borderRadius: "50px" }}>{round.round}</Col>&nbsp;
                             </Row>
                         </div>
                         <br />
                         <button
                             className="button-home"
-                            disabled={isStart}
                             onClick={() => {
                                 setIsStart(true)
                                 setWords(initalCard)
@@ -134,26 +149,27 @@ function Main(props) {
 
                     :
 
+                    // make home button show when final instead of play button
                     <button
                         className="button-home"
-                        disabled={!isStart}
                         onClick={() => {
                             setIsStart(false)
                             setWords()
                             resetFunc()
                             setStop(false)
+                            resetGame()
                         }}
                     >
                         <PlaySquareFilled />
                     </button>
                 }
 
-                {mode === "game" ?
+                {!isFinal && mode === "game" ?
                     <>
                         <Timer
                             refresh={refresh}
                             initialMinute="0"
-                            initialSeconds="5"
+                            initialSeconds="2"
                             stop={() => { setStop(true) }}
                             start={() => { setStop(false) }}
                             reset={() => { resetFunc() }}
@@ -167,6 +183,7 @@ function Main(props) {
 
                 <br />
                 <Card
+                    isFinal={isFinal}
                     round={round}
                     setScores={(a) => { scores(a) }}
                     words={words}
@@ -174,13 +191,6 @@ function Main(props) {
                     reset={reset}
                     isStart={isStart}
                 />
-
-                Team A:
-                {JSON.stringify(teamAState)}
-                <br />
-                Team B:
-                {JSON.stringify(teamBState)}
-
             </header>
 
         </div >

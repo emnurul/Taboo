@@ -17,7 +17,7 @@ const ScoreTable = (props) => {
                 </Col>
             </Row>
             <Row justify="center">
-                <div className="total-score">Round : {round} ({score} {points})</div>
+                <div className="total-score">Round {round} ({score} {points})</div>
             </Row>
             <Row className="score-body" justify="center" >
                 <Col span={8} className="score-data">
