@@ -1,6 +1,7 @@
 // import '../../styles/panel.scss';
 import Timer from './timer'
 import Card from './card'
+import ScoreTable from './scores'
 import { Row, Col } from 'antd';
 
 import { useEffect } from 'react';
@@ -16,11 +17,7 @@ function Main(props) {
     const [isStart, setIsStart] = useState(true)
     const [refresh, doRefresh] = useState(0);
 
-    const intialTeamState = {
-        1: {},
-        2: {},
-        3: {}
-    }
+    const intialTeamState = { score: 0, state: [] }
     const initialRound = { team: "A", round: 1 }
 
     const [teamAState, setTeamAState] = useState(intialTeamState)
@@ -39,7 +36,7 @@ function Main(props) {
     const initalCard = {
         word: "HOME",
         taboo1: "",
-        taboo2: "The game of",
+        taboo2: "the Game of",
         taboo3: "unspeakable fun",
         taboo4: "",
         taboo5: ""
@@ -49,6 +46,7 @@ function Main(props) {
     const [stopped, setStop] = useState(false)
     const [reset, setReset] = useState(false)
     const [isFinal, setFinal] = useState(false)
+    const [winner, setWinner] = useState("")
 
     const mode = isStart ? "start" : "game"
 
@@ -94,36 +92,83 @@ function Main(props) {
         doRefresh(refresh + 1)
         const { team, words, score } = scoreData
 
+        const teamState = team.team === "A" ? teamAState : teamBState
+        let count = score + teamState.score
+
         const newScore = {
-            [round.round]: {
-                words,
-                score
-            }
+            round: round.round,
+            words,
+            score
         }
 
         //setting scores for total tally
         team.team === "A" ?
-            setTeamAState({ ...teamAState, ...newScore }) :
-            setTeamBState({ ...teamBState, ...newScore })
+            setTeamAState({ score: count, state: [...teamState.state, newScore] }) :
+            setTeamBState({ score: count, state: [...teamState.state, newScore] })
 
         rounds(round)
+
+        teamAState.score > teamBState.score ? setWinner("A") : setWinner("B")
     }
 
 
     return (
         <div>
             <header className="container">
-
                 {
                     isFinal ?
                         <>
-                            Final...s<br />
+                            <div className="winner-title">Winner: TEAM {winner} !! </div>
 
-                            Team A:
-                            {JSON.stringify(teamAState)}
-                            <br />
-                            Team B:
-                            {JSON.stringify(teamBState)}
+                            <ScoreTable
+                                type="header"
+                                title="TEAM A"
+                            />
+                            {teamAState.state.map((item) => {
+                                const { round, words, score } = item
+                                return (
+                                    <>
+                                        <ScoreTable
+                                            type="table"
+                                            title="TEAM A"
+                                            words={words}
+                                            score={score}
+                                            round={round}
+                                        />
+                                    </>
+                                )
+
+                            })}
+                            <ScoreTable
+                                type="total"
+                                score={teamAState.score}
+                            />
+
+                            <br /><br />
+
+                            <ScoreTable
+                                type="header"
+                                title="TEAM B"
+                            />
+                            {teamBState.state.map((item) => {
+                                const { round, words, score } = item
+                                return (
+                                    <>
+                                        <ScoreTable
+                                            type="table"
+                                            title="TEAM B"
+                                            words={words}
+                                            score={score}
+                                            round={round}
+                                        />
+                                    </>
+                                )
+
+                            })}
+                            <ScoreTable
+                                type="total"
+                                score={teamBState.score}
+                            />
                         </> :
                         null
                 }

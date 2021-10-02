@@ -30,7 +30,8 @@
   padding: 30px 0;
   min-height: calc(100vh - 60px);
   height: 100%;
-  background-color: darkcyan;
+  /* background-color: darkslategray; */
+  background-color: #2B3856;
 }
 
 .card{
@@ -175,4 +176,11 @@ li {
 .total-score{
   background-color: #87CEEB;
   width:100%
+}
+
+.winner-title {
+  font-size: xx-large;
+  color: white;
+  padding-bottom: 30px;
+  font-family:'Trebuchet MS';
 }

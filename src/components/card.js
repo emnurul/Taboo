@@ -107,7 +107,6 @@ const Card = (props) => {
         }
         setScore(currentScore)
     }
-    console.log(round)
     return (
         <>
 
@@ -115,9 +114,14 @@ const Card = (props) => {
                 !isStartWord && stopped ?
                     <div>
                         <ScoreTable
+                            type="table"
                             words={words}
                             score={score}
                             round={round.round}
+                        />
+                        <ScoreTable
+                            type="total"
+                            score={score}
                         />
                         <br />
                         <button

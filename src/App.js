@@ -1,6 +1,6 @@
 import './App.css';
 import Main from './components/main'
-import Card from './components/card'
+// import Card from './components/card'
 
 function App() {
 

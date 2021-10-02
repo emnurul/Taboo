@@ -7,33 +7,56 @@ import '../App.css';
 
 const ScoreTable = (props) => {
 
-    const { words, score, round } = props
+    const { words, score, round, type } = props
+    const title = props.title ? props.title : null
+    // const type = props.type ? props.type : "table" //"table" or "header" or "final"
     const points = score === 1 ? "pt" : "pts"
     return (
         <div className="score-table">
-            <Row justify="center" className="score-header">
-                <Col span={8}>
-                    {null}
-                </Col>
-            </Row>
-            <Row justify="center">
-                <div className="total-score">Round {round} ({score} {points})</div>
-            </Row>
-            <Row className="score-body" justify="center" >
-                <Col span={8} className="score-data">
-                    {words.map((item) => {
-                        return (
-                            <div className={item.type}>
-                                {item.word}<br />
-                            </div>
-                        )
 
-                    })}
-                </Col>
-            </Row>
-            <Row justify="center">
-                <div className="total-score">Total : {score}</div>
-            </Row>
+            {
+                type === "header" ?
+                    <Row justify="center" className="score-header">
+                        <Col span={8}>
+                            {title}
+                        </Col>
+                    </Row> :
+                    null
+            }
+            {
+                type == "table" ?
+                    <>
+                        <Row justify="center">
+                            <div className="total-score">Round {round} ({score} {points})</div>
+                        </Row>
+                        <Row className="score-body" justify="center" >
+                            <Col span={8} className="score-data">
+                                {words.map((item) => {
+                                    return (
+                                        <div className={item.type}>
+                                            {item.word}<br />
+                                        </div>
+                                    )
+                                })}
+                            </Col>
+                        </Row>
+
+                    </> :
+                    null
+            }
+            {
+                type == "total" ?
+                    <>
+                        <Row justify="center">
+                            <div className="total-score">Total : {score}</div>
+                        </Row>
+                    </> :
+                    null
+            }
+
+
+
+
         </div>
     )
 }
