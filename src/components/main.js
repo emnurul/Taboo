@@ -120,13 +120,13 @@ function Main(props) {
                         <>
                             <div className="winner-title">Winner: TEAM {winner} !! </div>
 
-                            <ScoreTable
+                            {/* <ScoreTable
                                 type ="final"
                                 round = "1"
                                 score = "19"
                                 points= "2"
                                 words = {[{word: "word", type: "taboo"}]}
-                            />
+                            /> */}
                             <ScoreTable
                                 type="header"
                                 title="TEAM A"
