@@ -53,7 +53,60 @@ const ScoreTable = (props) => {
                     </> :
                     null
             }
+            {
+                type == "final" ?
+                    <>
+                        <Row>
+                            <Col xs={24} l={10}>
+                                <Row justify="center" className="score-header">
+                                    <Col span={8}>
+                                        {title}
+                                    </Col>
+                                </Row>
+                                <Row justify="center">
+                                    <div className="total-score">Round {round} ({score} {points})</div>
+                                </Row>
+                                <Row className="score-body" justify="center" >
+                                    <Col span={8} className="score-data">
+                                        {words.map((item) => {
+                                            return (
+                                                <div className={item.type}>
+                                                    {item.word}<br />
+                                                </div>
+                                            )
+                                        })}
+                                    </Col>
+                                </Row>
+                            </Col>
 
+                            <Col xs={24} l={10}>
+                                <Row justify="center" className="score-header">
+                                    <Col span={8}>
+                                        {title}
+                                    </Col>
+                                </Row>
+                                <Row justify="center">
+                                    <div className="total-score">Round {round} ({score} {points})</div>
+                                </Row>
+                                <Row className="score-body" justify="center" >
+                                    <Col span={8} className="score-data">
+                                        {words.map((item) => {
+                                            return (
+                                                <div className={item.type}>
+                                                    {item.word}<br />
+                                                </div>
+                                            )
+                                        })}
+                                    </Col>
+                                </Row>
+                            </Col>
+
+                        </Row>
+
+
+                    </> :
+                    null
+            }
 
 
 

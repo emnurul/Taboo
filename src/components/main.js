@@ -121,6 +121,13 @@ function Main(props) {
                             <div className="winner-title">Winner: TEAM {winner} !! </div>
 
                             <ScoreTable
+                                type ="final"
+                                round = "1"
+                                score = "19"
+                                points= "2"
+                                words = {[{word: "word", type: "taboo"}]}
+                            />
+                            <ScoreTable
                                 type="header"
                                 title="TEAM A"
                             />
@@ -178,7 +185,7 @@ function Main(props) {
                         <div className="score-table" style={{ maxWidth: "250px", borderRadius: "50px" }}>
                             <Row justify="center" >
                                 <Col className="score-header" style={{ width: "150px", borderRadius: "50px" }}>TEAM &nbsp;{round.team}</Col>&nbsp;
-                                <Col className="score-header" style={{ backgroundColor: "#8A2BE2", width: "50px", borderRadius: "50px" }}>{round.round}</Col>&nbsp;
+                                <Col className="score-header" style={{ width: "50px", borderRadius: "50px" }}>{round.round}</Col>&nbsp;
                             </Row>
                         </div>
                         <br />
@@ -205,7 +212,7 @@ function Main(props) {
                             resetGame()
                         }}
                     >
-                        <PlaySquareFilled />
+                        <PlaySquareFilled /> Play
                     </button>
                 }
 
@@ -213,8 +220,8 @@ function Main(props) {
                     <>
                         <Timer
                             refresh={refresh}
-                            initialMinute="1"
-                            initialSeconds="0"
+                            initialMinute="0"
+                            initialSeconds="5"
                             stop={() => { setStop(true) }}
                             start={() => { setStop(false) }}
                             reset={() => { resetFunc() }}
